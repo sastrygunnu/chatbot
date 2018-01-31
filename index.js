@@ -46,8 +46,9 @@ function handleMessage(sender, question) {
 	// const hackathon_type = firstEntity(entities, 'hackathon_type');
 
 	if(!intent){
-		sendTextMessage(sender, "I don't understand what you mean");
-		setTimeout(function(){ sendGenericMessage(sender); }, 100);
+		sendGenericMessage(sender);
+		// sendTextMessage(sender, "I don't understand what you mean");
+		// setTimeout(function(){ sendGenericMessage(sender); }, 100);
 
 		return;	
 	}
@@ -351,7 +352,7 @@ function sendGenericMessage(sender) {
 		    "type": "template",
 		    "payload": {
 				"template_type": "button",
-				"text":"What can i do to help?",
+				"text":"I didn't get that",
 				    "buttons": [
 						{
 					    "type": "postback",
