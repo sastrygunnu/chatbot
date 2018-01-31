@@ -302,7 +302,7 @@ app.post('/webhook/', function (req, res) {
           } else if (text) {
             // We received a text message
 			console.log("Handling message: " + text);
-			sendGenericMessage(sender, text);
+			sendTextMessage(sender, text);
           }
 		
 	  	}
