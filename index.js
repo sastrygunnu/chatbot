@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-var kony = require('kony-sdk.js');
+var kony = require('./kony-sdk');
 
 app.set('port', (process.env.PORT || 5000))
 
