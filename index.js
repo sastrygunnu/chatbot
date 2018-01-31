@@ -352,7 +352,6 @@ function sendGenericMessage(sender) {
 		    "payload": {
 				"template_type": "generic",
 			    "elements": [{
-					"title": "First card",
 				    "buttons": [{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
