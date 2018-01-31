@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+var kony = require("./kony-skd.js");
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -52,7 +53,7 @@ function handleMessage(sender, question) {
 	sendTextMessage(sender, intent.value);
 	
 
-
+	console.log(kony)
 
 
 
