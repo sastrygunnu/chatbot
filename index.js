@@ -357,12 +357,22 @@ function sendGenericMessage(sender) {
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
 					    "title": "❓ What to ask?"
-				    },
+						},
+						{
+							"type":"postback",
+							"title":"Postback",
+							"payload":"DEVELOPER_DEFINED_PAYLOAD"
+						},
 						{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
 					    "title": "👩 Talk to a human"
-				    },{
+						},
+						{
+							"type":"referral",
+							"title":"referral",
+							"payload":"DEVELOPER_DEFINED_PAYLOAD"
+						},{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
 					    "title": "Visit Our Website"
