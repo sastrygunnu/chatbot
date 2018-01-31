@@ -350,9 +350,8 @@ function sendGenericMessage(sender) {
 	    "attachment": {
 		    "type": "template",
 		    "payload": {
-				"template_type": "generic",
+				"template_type": "button",
 			    "elements": [{
-					"title": "",
 				    "buttons": [{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
