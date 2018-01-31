@@ -38,8 +38,8 @@ let state = null;
 // If the request is familiar to wit.ai, the matched intention or entity will determine the reply message.
 function handleMessage(sender, question) {
   return wit.message(question).then(({entities}) => {
-    const intent = firstEntity(entities, 'intent');
-	const job_type = firstEntity(entities, 'job_type');
+  const intent = firstEntity(entities, 'intent');
+	const job_type = firstEntity(entities, 'greetings');
 	const bye = firstEntity(entities, 'bye');
 	const project_type = firstEntity(entities, 'project_type');
 	const hackathon_type = firstEntity(entities, 'hackathon_type');
