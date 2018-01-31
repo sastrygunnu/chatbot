@@ -351,7 +351,6 @@ function sendGenericMessage(sender) {
 		    "type": "template",
 		    "payload": {
 				"template_type": "button",
-			    "elements": [{
 				    "buttons": [{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
@@ -360,8 +359,7 @@ function sendGenericMessage(sender) {
 					    "type": "postback",
 					    "title": "Postback",
 					    "payload": "Payload for first element in a generic bubble",
-				    }],
-			    }]
+				    }]
 		    }
 	    }
     }
