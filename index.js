@@ -43,13 +43,16 @@ function handleMessage(sender, question) {
 	// const bye = firstEntity(entities, 'bye');
 	// const project_type = firstEntity(entities, 'project_type');
 	// const hackathon_type = firstEntity(entities, 'hackathon_type');
-if(intent.value){
-	sendTextMessage(sender, intent.value);
 
-}
-else{
+
+
+if(!intent.value){
 	sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
 		      return;
+}
+else{
+	sendTextMessage(sender, intent.value);
+
 		    }
 
 
