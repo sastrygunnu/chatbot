@@ -50,7 +50,7 @@ function handleMessage(sender, question) {
 		return;	
 	}
 
-	console.log(entities);
+	console.log(intent);
 
 	sendTextMessage(sender, intent.value);
 	
