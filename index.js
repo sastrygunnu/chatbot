@@ -46,15 +46,16 @@ function handleMessage(sender, question) {
 	// const hackathon_type = firstEntity(entities, 'hackathon_type');
 
 	if(!intent){
-		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
+		sendTextMessage(sender, "I don't understand what you mean");
+		setTimeout(function(){ sendGenericMessage(sender, ""); }, 100);
+
 		return;	
 	}
 
-	console.log(intent);
+
 
 	sendTextMessage(sender, intent.value);
 	
-
 	console.log(kony)
 
 
