@@ -355,12 +355,12 @@ function sendGenericMessage(sender) {
 				    "buttons": [
 						{
 					    "type": "postback",
-					    "url": "https://www.messenger.com",
+					    "payload": "what to ask",
 					    "title": "❓ What to ask?"
 						},
 						{
-					    "type": "referral",
-					    "url": "https://www.messenger.com",
+					    "type": "postback",
+					    "payload": "talk to a Human",
 					    "title": "👩 Talk to a human"
 						},
 						{
