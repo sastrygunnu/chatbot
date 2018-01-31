@@ -354,25 +354,16 @@ function sendGenericMessage(sender) {
 				"text":"What can i do to help?",
 				    "buttons": [
 						{
-					    "type": "web_url",
+					    "type": "postback",
 					    "url": "https://www.messenger.com",
 					    "title": "❓ What to ask?"
 						},
 						{
-							"type":"postback",
-							"title":"Postback",
-							"payload":"DEVELOPER_DEFINED_PAYLOAD"
-						},
-						{
-					    "type": "web_url",
+					    "type": "referral",
 					    "url": "https://www.messenger.com",
 					    "title": "👩 Talk to a human"
 						},
 						{
-							"type":"referral",
-							"title":"referral",
-							"payload":"DEVELOPER_DEFINED_PAYLOAD"
-						},{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
 					    "title": "Visit Our Website"
