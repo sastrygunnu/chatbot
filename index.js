@@ -50,9 +50,7 @@ function handleMessage(sender, question) {
 		return;	
 	}
 
-	if(intent.value == "Hi"){
-		sendGenericMessage(sender, intent.value);
-	}
+	console.log(entities);
 
 	sendTextMessage(sender, intent.value);
 	
