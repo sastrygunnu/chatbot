@@ -352,11 +352,21 @@ function sendGenericMessage(sender) {
 		    "payload": {
 				"template_type": "button",
 				"text":"What can i do to help?",
-				    "buttons": [{
+				    "buttons": [
+						{
+					    "type": "web_url",
+					    "url": "https://www.messenger.com",
+					    "title": "❓ What to ask?"
+				    },
+						{
+					    "type": "web_url",
+					    "url": "https://www.messenger.com",
+					    "title": "👩 Talk to a human"
+				    },{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
 					    "title": "Visit Our Website"
-				    }]
+						},]
 			   
 		    }
 	    }
