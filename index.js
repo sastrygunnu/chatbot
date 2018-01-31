@@ -47,7 +47,7 @@ function handleMessage(sender, question) {
 
 	if(!intent){
 		sendTextMessage(sender, "I don't understand what you mean");
-		setTimeout(function(){ sendGenericMessage(sender, ""); }, 100);
+		setTimeout(function(){ sendGenericMessage(sender); }, 100);
 
 		return;	
 	}
