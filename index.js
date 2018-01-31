@@ -351,15 +351,13 @@ function sendGenericMessage(sender) {
 		    "type": "template",
 		    "payload": {
 				"template_type": "button",
+				"text":"What can i do to help?",
 				    "buttons": [{
 					    "type": "web_url",
 					    "url": "https://www.messenger.com",
-					    "title": "web url"
-				    }, {
-					    "type": "postback",
-					    "title": "Postback",
-					    "payload": "Payload for first element in a generic bubble",
+					    "title": "Visit Our Website"
 				    }]
+			   
 		    }
 	    }
     }
