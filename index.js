@@ -44,7 +44,11 @@ function handleMessage(sender, question) {
 	// const project_type = firstEntity(entities, 'project_type');
 	// const hackathon_type = firstEntity(entities, 'hackathon_type');
 	sendTextMessage(sender, intent.value);
-
+	if (!intent.value) {
+		      // use app data, or a previous context to decide how to fallback
+				sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
+		      return;
+		    }
 // 	console.log(intent.value)
 //     if (!intent && !job_type && !project_type && !bye && !hackathon_type) {
 //       // use app data, or a previous context to decide how to fallback
