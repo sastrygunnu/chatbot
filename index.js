@@ -300,7 +300,8 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, 'Sorry I can only process text messages for now. 🙁')
             .catch(console.error);
           } else if (text) {
-            // We received a text message
+						// We received a text message
+						console.log(" messags: " + event.message);
 			console.log("Handling message: " + text);
 			handleMessage(sender, text);
           }
