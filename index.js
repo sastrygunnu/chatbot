@@ -274,11 +274,13 @@ app.post('/webhook/', function (req, res) {
 	//console.log(messaging_events)
     for (let i = 0; i < messaging_events.length; i++) {
 			let event = req.body.entry[0].messaging[i];
-			console.log(event)
+			console.log("Main event" + event)
 			let sender = event.sender.id;
-			let textIn = event.message.text
+			let textIn = event.message.text;
+			console.log("outside" + textIn)
         if (event.postback) {
-    	    let text = JSON.stringify(event.postback)
+					let text = JSON.stringify(event.postback);
+					console.log("inside postback" + text)
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
     	    sendTextMessage(sender, "You can ask me..Something like")
 			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
