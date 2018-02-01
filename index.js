@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-var basefile = require('kony-sdk');
+var basefile = require('../chatbot/kony-sdk');
 
 
 app.set('port', (process.env.PORT || 5000))
