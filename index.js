@@ -279,7 +279,7 @@ app.post('/webhook/', function (req, res) {
 			let sender = event.sender.id;
 			let textIn = event.message.text;
 			var text = JSON.stringify(event.postback);
-			console.log("outside" + textIn)
+			console.log("outside" + text)
         if (event.postback) {
 					let text = JSON.stringify(event.postback);
 					console.log("inside postback" + text)
