@@ -52,11 +52,8 @@ function handleMessage(sender, question) {
 		// setTimeout(function(){ sendGenericMessage(sender); }, 100);
 		return;	
 	}
+	sendTextMessage(sender, intent.value);
 
-	else{
-		sendTextMessage(sender, intent.value);
-
-	}
 
 
 	
@@ -342,12 +339,12 @@ app.post('/webhook/', function (req, res) {
 					}
 		
 					if(text === "hi"){
-						handleMessage(sender, text);
+						sendTextMessage(sender, "My Name is Jambo. Chat bot assistant for you.. How can i help you today?");
 						continue;
 					}
 
-					if(text === "Hello"){
-						handleMessage(sender, text);
+					if(text === "hello"){
+						sendTextMessage(sender, "My Name is Jambo. Chat bot assistant for you.. How can i help you today?");
 						continue;
 					}
 
