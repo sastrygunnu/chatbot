@@ -273,30 +273,27 @@ app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
 	//console.log(messaging_events)
     for (let i = 0; i < messaging_events.length; i++) {
-			let event = req.body.entry[0].messaging[i];
-			let mainevt = JSON.stringify(event);
-			console.log("Main event" + JSON.stringify(event));
-			let sender = event.sender.id;
-			let textIn = event.message.text;
-			var text = JSON.stringify(event.postback);
-			console.log("outside" + text)
+      let event = req.body.entry[0].messaging[i]
+      let sender = event.sender.id
         if (event.postback) {
-					let text = JSON.stringify(event.postback);
-					console.log("inside postback" + text)
+    	    let text = JSON.stringify(event.postback)
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
     	    sendTextMessage(sender, "You can ask me..Something like")
 			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
+
     	    continue
-				}
-        if (text.postback.payload == 'talk_to_a_Human') {
+        }
+        if (event.postback) {
 			// If a user has come back for a second time
-    	    let text = JSON.stringify(event.postback)
+					let text = JSON.stringify(event.postback)
+					if(text == "talk_to_a_Human"){
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
 			setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
 			sendbotbutton(sender);
+		}
 			continue
         }
       if (event.message && event.message.text) {
@@ -359,20 +356,18 @@ function sendTextMessage(sender, text) {
 function sendGenericMessage(sender) {
     let messageData = {
 	    "attachment": {
-				"type": "template",
+		    "type": "template",
 		    "payload": {
 				"template_type": "button",
 				"text":"I didn't get that",
 				    "buttons": [
 						{
 					    "type": "postback",
-							"payload": "what to ask",
-							"msgid": "01",
+					    "payload": "what to ask",
 					    "title": "❓ What to ask?"
 						},
 						{
-							"type": "postback",
-							"msgid": "02",
+					    "type": "postback",
 					    "payload": "talk_to_a_Human",
 					    "title": "👩 Talk to a human"
 						},
@@ -415,7 +410,16 @@ function sendbotbutton(sender) {
 						"payload": "what to ask",
 						"title": "🤖 Call bot back"
 					},
-				]
+					{
+						"type": "postback",
+						"payload": "talk to a Human",
+						"title": "👩 Talk to a human"
+					},
+					{
+						"type": "web_url",
+						"url": "https://www.saudia.com",
+						"title": "Visit Our Website"
+					},]
 			 
 			}
 		}
