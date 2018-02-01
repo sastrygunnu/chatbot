@@ -5,9 +5,14 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 // var basefile = require('.kony-sdk');
-const fs = require('fs-extra')
 
-
+var fs = require('fs');
+fs.readFile( __dirname + '/kony-sdk.js', function (err, data) {
+  if (err) {
+    throw err; 
+  }
+  console.log(data.toString());
+});
 app.set('port', (process.env.PORT || 5000))
 
 let Wit = null;
