@@ -282,21 +282,15 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
-
+			if(text == "talk_to_a_Human"){
+				sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
+		setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
+		setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
+		sendbotbutton(sender);
+			}
     	    continue
         }
-        if (event.postback) {
-			// If a user has come back for a second time
-					let text = JSON.stringify(event.postback);
-					console.log("event" + text)
-					if(text == "talk_to_a_Human"){
-    	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
-			setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
-			setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
-			sendbotbutton(sender);
-		}
-			continue
-        }
+        
       if (event.message && event.message.text) {
   	    let textIn = event.message.text
   		if (event.message.is_echo){
