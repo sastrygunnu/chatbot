@@ -341,7 +341,16 @@ app.post('/webhook/', function (req, res) {
 		
 					}
 		
-				
+					if(text === "hi"){
+						handleMessage(sender, text);
+						continue;
+					}
+
+					if(text === "Hello"){
+						handleMessage(sender, text);
+						continue;
+					}
+
 					if(text === "about the bot"){
 						
 						sendTextMessage(sender, "I'm Jambo chatbot and autoresponder");
