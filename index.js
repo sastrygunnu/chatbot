@@ -289,7 +289,7 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
     	    continue
 				}
-        if (mainevt.postback.payload == 'talk_to_a_Human') {
+        if (text.postback.payload == 'talk_to_a_Human') {
 			// If a user has come back for a second time
     	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
