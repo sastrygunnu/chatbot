@@ -302,7 +302,8 @@ app.post('/webhook/', function (req, res) {
             .catch(console.error);
           } else if (text) {
 						if(text === "update my flight status?"){
-							sendTextMessage(sender, 'Sure can you please give me your flight no/ booking id')
+							sendTextMessage(sender, 'Oh no seems some delay 🙁')
+							flightdelay(sender);
 							continue;
 						}
 
@@ -329,6 +330,14 @@ app.post('/webhook/', function (req, res) {
 							continue;
 			
 						}
+
+						if(text === "update my flight status"){
+							sendTextMessage(sender, "Sure..here the your boarding pass");
+							bordingpass(sender);
+							continue;
+			
+						}
+						
 						if(text === "about the bot"){
 							
 							sendTextMessage(sender, "I'm Jambo chatbot and autoresponder");
@@ -527,6 +536,58 @@ function bordingpass(sender) {
 					]
 				}
 			}
+		
+	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+function flightdelay(sender) {
+	let messageData = {
+		
+		"attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "airline_update",
+        "intro_message": "Your flight is delayed",
+        "update_type": "delay",
+        "locale": "en_US",
+        "pnr_number": "CF23G2",
+        "update_flight_info": {
+          "flight_number": "KL123",
+          "departure_airport": {
+            "airport_code": "SFO",
+            "city": "San Francisco",
+            "terminal": "T4",
+            "gate": "G8"
+          },
+          "arrival_airport": {
+            "airport_code": "AMS",
+            "city": "Amsterdam",
+            "terminal": "T4",
+            "gate": "G8"
+          },
+          "flight_schedule": {
+            "boarding_time": "2015-12-26T10:30",
+            "departure_time": "2015-12-26T11:30",
+            "arrival_time": "2015-12-27T07:30"
+          }
+        }
+      }
+    }
 		
 	}
 	request({
