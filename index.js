@@ -274,6 +274,7 @@ app.post('/webhook/', function (req, res) {
 	//console.log(messaging_events)
     for (let i = 0; i < messaging_events.length; i++) {
 			let event = req.body.entry[0].messaging[i];
+			let mainevt = JSON.stringify(event);
 			console.log("Main event" + JSON.stringify(event));
 			let sender = event.sender.id;
 			let textIn = event.message.text;
@@ -288,7 +289,7 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
     	    continue
 				}
-        if (event.messageobj.msgid == '02') {
+        if (mainevt.postback.payload == 'talk_to_a_Human') {
 			// If a user has come back for a second time
     	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
