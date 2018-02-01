@@ -287,7 +287,8 @@ app.post('/webhook/', function (req, res) {
         }
         if (event.postback) {
 			// If a user has come back for a second time
-					let text = JSON.stringify(event.postback)
+					let text = JSON.stringify(event.postback);
+					console.log("event" + text)
 					if(text == "talk_to_a_Human"){
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
 			setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
