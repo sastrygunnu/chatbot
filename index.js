@@ -41,7 +41,7 @@ let state = null;
 // If the request is familiar to wit.ai, the matched intention or entity will determine the reply message.
 function handleMessage(sender, question) {
   return wit.message(question).then(({entities}) => {
-	const intent = firstEntity(entities, 'intent').toLowerCase();
+	const intent = firstEntity(entities, 'intent');
 	console.log(intent);
 	// const job_type = firstEntity(entities, 'greetings');
 	// const bye = firstEntity(entities, 'bye');
@@ -278,7 +278,7 @@ app.post('/webhook/', function (req, res) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
         if (event.postback) {
-    	    let text = JSON.stringify(event.postback).toLowerCase();
+    	    let text = JSON.stringify(event.postback);
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
     	    sendTextMessage(sender, "You can ask me..Something like")
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
