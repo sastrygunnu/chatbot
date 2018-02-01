@@ -324,20 +324,21 @@ app.post('/webhook/', function (req, res) {
 			
 						}
 
-						if(text === "can you send me my boarding pass"){
+						if(text === "can you send me my boarding pass?"){
 							sendTextMessage(sender, "Sure..here the your boarding pass");
 							bordingpass(sender);
 							continue;
 			
 						}
 
-						if(text === "update my flight status"){
-							sendTextMessage(sender, "Sure..here the your boarding pass");
-							bordingpass(sender);
+						if(text === "book my ticket"){
+							sendTextMessage(sender, "Opps Sorry i cannot book now im still under development ask me some time later please?");
 							continue;
 			
 						}
-						
+
+
+				
 						if(text === "about the bot"){
 							
 							sendTextMessage(sender, "I'm Jambo chatbot and autoresponder");
