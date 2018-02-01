@@ -411,16 +411,7 @@ function sendbotbutton(sender) {
 						"payload": "what to ask",
 						"title": "🤖 Call bot back"
 					},
-					{
-						"type": "postback",
-						"payload": "talk to a Human",
-						"title": "👩 Talk to a human"
-					},
-					{
-						"type": "web_url",
-						"url": "https://www.saudia.com",
-						"title": "Visit Our Website"
-					},]
+				]
 			 
 			}
 		}
