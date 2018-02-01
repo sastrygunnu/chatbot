@@ -4,7 +4,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-var basefile = require('../chatbot/kony-sdk');
+// var basefile = require('.kony-sdk');
+const fs = require('fs-extra')
 
 
 app.set('port', (process.env.PORT || 5000))
@@ -632,7 +633,10 @@ app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })
 
-var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
+try {
+	fs.copySync('./kony-sdk.js')
+	console.log('success!')
+	var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
 var appsecret = "5641e81aec8223be3cf7563ca36a640c"
 var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
 
@@ -643,4 +647,9 @@ client.init(appkey, appsecret, serviceURL, function(response) {
 }, function(error) {
 	console.log("Init Failure");
 });
+  } catch (err) {
+	console.error(err)
+  }
+
+
 
