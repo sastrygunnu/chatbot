@@ -286,7 +286,7 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
     	    continue
 				}
-        if (event.message.attachment.payload == "talk_to_a_Human") {
+        if (event.messageobj.refmsgid=='talk') {
 			// If a user has come back for a second time
     	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
@@ -355,18 +355,20 @@ function sendTextMessage(sender, text) {
 function sendGenericMessage(sender) {
     let messageData = {
 	    "attachment": {
-		    "type": "template",
+				"type": "template",
 		    "payload": {
 				"template_type": "button",
 				"text":"I didn't get that",
 				    "buttons": [
 						{
 					    "type": "postback",
-					    "payload": "what to ask",
+							"payload": "what to ask",
+							"msgid": "01",
 					    "title": "❓ What to ask?"
 						},
 						{
-					    "type": "postback",
+							"type": "postback",
+							"msgid": "02",
 					    "payload": "talk_to_a_Human",
 					    "title": "👩 Talk to a human"
 						},
