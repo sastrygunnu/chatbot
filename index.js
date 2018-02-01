@@ -279,7 +279,6 @@ app.post('/webhook/', function (req, res) {
     	    let text = JSON.stringify(event.postback).toLowerCase();
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
     	    sendTextMessage(sender, "You can ask me..Something like")
-			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "or if you want to talk to human - Just say - talk to human"); }, 100);
@@ -310,13 +309,13 @@ app.post('/webhook/', function (req, res) {
 						if(text === "talk to human"){
 							sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
 							setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
-							setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
+							setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by Saying My Name - Jambo"); }, 100);
 							sendbotbutton(sender);
 							continue;
 						}
 
-						if(text === "call bot back"){
-							sendTextMessage(sender, "I'm back 🙂, how can I help you?")
+						if(text === "jambo"){
+							sendTextMessage(sender, "Hey I'm back 🙂, how can I help you?")
 							continue;
 						}
 						if(text === "so nice"){
@@ -324,8 +323,21 @@ app.post('/webhook/', function (req, res) {
 							continue;
 			
 						}
+
+						if(text === "can you send me my boarding pass"){
+							sendTextMessage(sender, "Sure..here the your boarding pass");
+							bordingpass(sender);
+							continue;
+			
+						}
 						if(text === "about the bot"){
-							sendTextMessage(sender, "do you want to know about me? 🙂")
+							
+							sendTextMessage(sender, "I'm Jambo chatbot and autoresponder");
+							setTimeout(function(){ sendTextMessage(sender, "I was created by Sastry From Kony who always improving me,"); }, 100);
+							setTimeout(function(){ sendTextMessage(sender, "for which I'm very thankful."); }, 200);
+							setTimeout(function(){ sendTextMessage(sender, "Who knows, maybe someday I will have my own thoughts 🙂"); }, 300);
+							setTimeout(function(){ sendTextMessage(sender, "But before that bright day I would like to share a secret with you.. do you know you can book a flight ticket direct right here?"); }, 400);
+							setTimeout(function(){ sendTextMessage(sender, "How to do that and to learn more just say book my ticket"); }, 500);
 							continue;
 			
 						}
@@ -425,7 +437,7 @@ function sendbotbutton(sender) {
 					{
 						"type": "postback",
 						"payload": "what to ask",
-						"title": "🤖 Call bot back"
+						"title": "Call bot back"
 					},
 				]
 			 
@@ -449,6 +461,91 @@ function sendbotbutton(sender) {
 	})
 }
 
+function bordingpass(sender) {
+	let messageData = {
+		"message": {
+			"attachment": {
+				"type": "template",
+				"payload": {
+					"template_type": "airline_boardingpass",
+					"intro_message": "You are checked in.",
+					"locale": "en_US",
+					"boarding_pass": [
+						{
+							"passenger_name": "SMITH\/NICOLAS",
+							"pnr_number": "CG4X7U",
+							"seat": "74J",            
+							"logo_image_url": "https:\/\/www.example.com\/en\/logo.png",
+							"header_image_url": "https:\/\/www.example.com\/en\/fb\/header.png",
+							"qr_code": "M1SMITH\/NICOLAS  CG4X7U nawouehgawgnapwi3jfa0wfh",
+							"above_bar_code_image_url": "https:\/\/www.example.com\/en\/PLAT.png",
+							"auxiliary_fields": [
+								{
+									"label": "Terminal",
+									"value": "T1"
+								},
+								{
+									"label": "Departure",
+									"value": "30OCT 19:05"
+								}
+							],
+							"secondary_fields": [
+								{
+									"label": "Boarding",
+									"value": "18:30"
+								},
+								{
+									"label": "Gate",
+									"value": "D57"
+								},
+								{
+									"label": "Seat",
+									"value": "74J"
+								},
+								{
+									"label": "Sec.Nr.",
+									"value": "003"
+								}
+							],
+							"flight_info": {
+								"flight_number": "KL0642",
+								"departure_airport": {
+									"airport_code": "JFK",
+									"city": "New York",
+									"terminal": "T1",
+									"gate": "D57"
+								},
+								"arrival_airport": {
+									"airport_code": "AMS",
+									"city": "Amsterdam"
+								},
+								"flight_schedule": {
+									"departure_time": "2016-01-02T19:05",
+									"arrival_time": "2016-01-05T17:30"
+								}
+							}
+						}
+					]
+				}
+			}
+		}
+	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
 // Spin up the server
 app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
