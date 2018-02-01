@@ -635,10 +635,6 @@ app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })
 
-fs.copy('./kony-sdk.js')
-  .then(() => console.log('success!'))
-  .catch(err => console.error(err))
-
 
 
  
