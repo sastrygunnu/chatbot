@@ -7,7 +7,7 @@ const app = express()
 // var basefile = require('.kony-sdk');
 var fs = require('fs');
 var file = fs.readFileSync('./kony-sdk.js', "utf8");
-console.log(file);
+
 
 
 app.set('port', (process.env.PORT || 5000))
@@ -639,27 +639,19 @@ fs.copy('./kony-sdk.js')
   .then(() => console.log('success!'))
   .catch(err => console.error(err))
 
-// try {
-// 	fs.copySync("./kony-sdk.js")
-// 	console.log('success!');
-// 	var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
-// var appsecret = "5641e81aec8223be3cf7563ca36a640c"
-// var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
-
-// var client = new kony.sdk();
-// client.init(appkey, appsecret, serviceURL, function(response) {
-	
-// 	console.log("Init success");
-// }, function(error) {
-// 	console.log("Init Failure");
-// });
-
-// } catch (err) {
-// 	console.error(err)
-//   }
 
 
  
 
-
+  var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
+  var appsecret = "5641e81aec8223be3cf7563ca36a640c"
+  var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
+  
+  var client = new kony.sdk();
+  client.init(appkey, appsecret, serviceURL, function(response) {
+	  
+	  console.log("Init success");
+  }, function(error) {
+	  console.log("Init Failure");
+  });
 
