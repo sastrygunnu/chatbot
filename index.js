@@ -5,6 +5,16 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 var kony = require('./kony-sdk');
+var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
+var appsecret = "5641e81aec8223be3cf7563ca36a640c"
+var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
+
+var client = new kony.sdk();
+client.init(appkey, appsecret, serviceURL, function(response) {
+	kony.print("Init success");
+}, function(error) {
+	kony.print("Init Failure");
+});
 
 app.set('port', (process.env.PORT || 5000))
 
