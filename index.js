@@ -293,6 +293,7 @@ app.post('/webhook/', function (req, res) {
   			//Don't react to chatbot's own messages.
   			continue;
   		} else {
+
 		  //General case send to AI
           // We retrieve the message content
           const {text, attachments} = event.message;
@@ -303,63 +304,63 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, 'Sorry I can only process text messages for now. 🙁')
             .catch(console.error);
 					} 
+					if(text === "update my flight status?"){
+						sendTextMessage(sender, 'Oh no seems some delay 🙁')
+						flightdelay(sender);
+						continue;
+					}
+		
+					if(text === "talk to human"){
+						sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
+						setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
+						setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by Saying My Name - Jambo"); }, 100);
+						continue;
+					}
+		
+					if(text === "jambo"){
+						sendTextMessage(sender, "Hey I'm back 🙂, how can I help you?")
+						continue;
+					}
+					if(text === "so nice"){
+						sendTextMessage(sender, "Glad you like it 🙂")
+						continue;
+		
+					}
+		
+					if(text === "can you send me my boarding pass?"){
+						sendTextMessage(sender, "Sure..here the your boarding pass");
+						bordingpass(sender);
+						continue;
+		
+					}
+		
+					if(text === "book my ticket"){
+						sendTextMessage(sender, "Opps Sorry i cannot book now im still under development ask me some time later please?");
+						continue;
+		
+					}
+		
+		
+		
+			
+					if(text === "about the bot"){
+						
+						sendTextMessage(sender, "I'm Jambo chatbot and autoresponder");
+						setTimeout(function(){ sendTextMessage(sender, "I was created by Sastry From Kony who always improving me,"); }, 100);
+						setTimeout(function(){ sendTextMessage(sender, "for which I'm very thankful."); }, 200);
+						setTimeout(function(){ sendTextMessage(sender, "Who knows, maybe someday I will have my own thoughts 🙂"); }, 300);
+						setTimeout(function(){ sendTextMessage(sender, "But before that bright day I would like to share a secret with you.. do you know you can book a flight ticket direct right here?"); }, 400);
+						setTimeout(function(){ sendTextMessage(sender, "How to do that and to learn more just say book my ticket"); }, 500);
+						continue;
+		
+					}
 					else if (text) {
 						
 						// We received a text message
 						console.log(" messags: " + event.message);
 			console.log("Handling message: " + text);
 			handleMessage(sender, text);
-			if(text === "update my flight status?"){
-				sendTextMessage(sender, 'Oh no seems some delay 🙁')
-				flightdelay(sender);
-				continue;
-			}
-
-			if(text === "talk to human"){
-				sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
-				setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
-				setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by Saying My Name - Jambo"); }, 100);
-				continue;
-			}
-
-			if(text === "jambo"){
-				sendTextMessage(sender, "Hey I'm back 🙂, how can I help you?")
-				continue;
-			}
-			if(text === "so nice"){
-				sendTextMessage(sender, "Glad you like it 🙂")
-				continue;
-
-			}
-
-			if(text === "can you send me my boarding pass?"){
-				sendTextMessage(sender, "Sure..here the your boarding pass");
-				bordingpass(sender);
-				continue;
-
-			}
-
-			if(text === "book my ticket"){
-				sendTextMessage(sender, "Opps Sorry i cannot book now im still under development ask me some time later please?");
-				continue;
-
-			}
-
-
-
-	
-			if(text === "about the bot"){
-				
-				sendTextMessage(sender, "I'm Jambo chatbot and autoresponder");
-				setTimeout(function(){ sendTextMessage(sender, "I was created by Sastry From Kony who always improving me,"); }, 100);
-				setTimeout(function(){ sendTextMessage(sender, "for which I'm very thankful."); }, 200);
-				setTimeout(function(){ sendTextMessage(sender, "Who knows, maybe someday I will have my own thoughts 🙂"); }, 300);
-				setTimeout(function(){ sendTextMessage(sender, "But before that bright day I would like to share a secret with you.. do you know you can book a flight ticket direct right here?"); }, 400);
-				setTimeout(function(){ sendTextMessage(sender, "How to do that and to learn more just say book my ticket"); }, 500);
-				continue;
-
-			}
-
+		
 			
           }
 		
