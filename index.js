@@ -274,7 +274,8 @@ app.post('/webhook/', function (req, res) {
 	//console.log(messaging_events)
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
-      let sender = event.sender.id
+			let sender = event.sender.id;
+			
         if (event.postback) {
     	    let text = JSON.stringify(event.postback)
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
@@ -285,9 +286,9 @@ app.post('/webhook/', function (req, res) {
 
     	    continue
         }
-        if (event.web_url) {
+        if (event.payload == "talk_to_a_Human") {
 			// If a user has come back for a second time
-    	    let text = JSON.stringify(event.web_url)
+    	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
 			setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
@@ -365,8 +366,8 @@ function sendGenericMessage(sender) {
 					    "title": "❓ What to ask?"
 						},
 						{
-					    "type": "web_url",
-					    "payload": "talk to a Human",
+					    "type": "postback",
+					    "payload": "talk_to_a_Human",
 					    "title": "👩 Talk to a human"
 						},
 						{
