@@ -636,7 +636,11 @@ app.listen(app.get('port'), function() {
 try {
 	fs.copySync("./kony-sdk.js")
 	console.log('success!')
-	var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
+} catch (err) {
+	console.error(err)
+  }
+
+var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
 var appsecret = "5641e81aec8223be3cf7563ca36a640c"
 var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
 
@@ -647,9 +651,7 @@ client.init(appkey, appsecret, serviceURL, function(response) {
 }, function(error) {
 	console.log("Init Failure");
 });
-  } catch (err) {
-	console.error(err)
-  }
+ 
 
 
 
