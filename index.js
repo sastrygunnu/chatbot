@@ -288,9 +288,11 @@ app.post('/webhook/', function (req, res) {
         if (event.referral) {
 			// If a user has come back for a second time
     	    let text = JSON.stringify(event.referral)
-    	    sendTextMessage(sender, "Welcome back! I am Johan's personal chatbot 🤖, please ask me any questions related to Johan's personal experiences.")
-			setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started."); }, 100);
-    	    continue
+    	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
+			setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
+			setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
+			sendbotbutton(sender);
+			continue
         }
       if (event.message && event.message.text) {
   	    let textIn = event.message.text
@@ -391,6 +393,50 @@ function sendGenericMessage(sender) {
 		    console.log('Error: ', response.body.error)
 	    }
     })
+}
+
+function sendbotbutton(sender) {
+	let messageData = {
+		"attachment": {
+			"type": "template",
+			"payload": {
+			"template_type": "button",
+			"text":"🤖 Call bot back",
+					"buttons": [
+					{
+						"type": "postback",
+						"payload": "what to ask",
+						"title": "🤖 Call bot back"
+					},
+					{
+						"type": "postback",
+						"payload": "talk to a Human",
+						"title": "👩 Talk to a human"
+					},
+					{
+						"type": "web_url",
+						"url": "https://www.saudia.com",
+						"title": "Visit Our Website"
+					},]
+			 
+			}
+		}
+	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
 }
 
 // Spin up the server
