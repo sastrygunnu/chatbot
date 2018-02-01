@@ -276,22 +276,15 @@ app.post('/webhook/', function (req, res) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
         if (event.postback) {
-    	    let text = JSON.stringify(event.postback)
+    	    let text = JSON.stringify(event.postback).toLowerCase();
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
     	    sendTextMessage(sender, "You can ask me..Something like")
 			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
+			setTimeout(function(){ sendTextMessage(sender, "or if you want to talk to human - Just say - talk to human"); }, 100);
 
     	    continue
-        }
-        if (event.postback) {
-			// If a user has come back for a second time
-					let text = JSON.stringify(event.postback);
-					if(text == "talk_to_a_Human"){
-    	    
-		}
-			continue
         }
       if (event.message && event.message.text) {
   	    let textIn = event.message.text
@@ -302,24 +295,39 @@ app.post('/webhook/', function (req, res) {
 		  //General case send to AI
           // We retrieve the message content
           const {text, attachments} = event.message;
-
+					
           if (attachments) {
             // We received an attachment
             // Let's reply with an automatic message
             sendTextMessage(sender, 'Sorry I can only process text messages for now. 🙁')
             .catch(console.error);
           } else if (text) {
-						if(text === "Update my flight status?"){
+						if(text === "update my flight status?"){
 							sendTextMessage(sender, 'Sure can you please give me your flight no/ booking id')
 							continue;
 						}
 
-						if(text === "Talk to a human"){
+						if(text === "talk to human"){
 							sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
 							setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
 							setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
 							sendbotbutton(sender);
 							continue;
+						}
+
+						if(text === "call bot back"){
+							sendTextMessage(sender, "I'm back 🙂, how can I help you?")
+							continue;
+						}
+						if(text === "so nice"){
+							sendTextMessage(sender, "Glad you like it 🙂")
+							continue;
+			
+						}
+						if(text === "about the bot"){
+							sendTextMessage(sender, "do you want to know about me? 🙂")
+							continue;
+			
 						}
 						// We received a text message
 						console.log(" messags: " + event.message);
@@ -376,14 +384,14 @@ function sendGenericMessage(sender) {
 					    "title": "❓ What to ask?"
 						},
 						{
-					    "type": "postback",
-					    "payload": "talk_to_a_Human",
-					    "title": "👩 Talk to a human"
-						},
-						{
 					    "type": "web_url",
 					    "url": "https://www.saudia.com",
 					    "title": "Visit Our Website"
+						},
+						{
+					    "type": "postback",
+					    "payload": "aboutbot",
+					    "title": "🤖 About the bot"
 						},]
 			   
 		    }
@@ -412,23 +420,14 @@ function sendbotbutton(sender) {
 			"type": "template",
 			"payload": {
 			"template_type": "button",
-			"text":"🤖 Call bot back",
+			"text":"Call bot back",
 					"buttons": [
 					{
 						"type": "postback",
 						"payload": "what to ask",
 						"title": "🤖 Call bot back"
 					},
-					{
-						"type": "postback",
-						"payload": "talk to a Human",
-						"title": "👩 Talk to a human"
-					},
-					{
-						"type": "web_url",
-						"url": "https://www.saudia.com",
-						"title": "Visit Our Website"
-					},]
+				]
 			 
 			}
 		}
