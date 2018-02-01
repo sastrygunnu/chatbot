@@ -643,7 +643,7 @@ app.listen(app.get('port'), function() {
   var appsecret = "5641e81aec8223be3cf7563ca36a640c"
   var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
   
-  var client = new kony.sdk();
+  var client = new file.sdk();
   client.init(appkey, appsecret, serviceURL, function(response) {
 	  
 	  console.log("Init success");
