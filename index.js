@@ -285,9 +285,9 @@ app.post('/webhook/', function (req, res) {
 
     	    continue
         }
-        if (event.account_link) {
+        if (event.web_url) {
 			// If a user has come back for a second time
-    	    let text = JSON.stringify(event.account_link)
+    	    let text = JSON.stringify(event.web_url)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
 			setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
@@ -365,7 +365,7 @@ function sendGenericMessage(sender) {
 					    "title": "❓ What to ask?"
 						},
 						{
-					    "type": "account_link",
+					    "type": "web_url",
 					    "payload": "talk to a Human",
 					    "title": "👩 Talk to a human"
 						},
