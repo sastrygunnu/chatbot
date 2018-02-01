@@ -372,7 +372,7 @@ app.post('/webhook/', function (req, res) {
 						console.log(" messags: " + event.message);
 			console.log("Handling message: " + text);
 			handleMessage(sender, text);
-			
+			callkony();
 			
           }
 		
@@ -384,7 +384,7 @@ app.post('/webhook/', function (req, res) {
 	//Send status saying we received okay.
     res.sendStatus(200)
   })
-  callkony();
+  
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
 // Generic function to send a reply to the user in Facebook Messenger.
