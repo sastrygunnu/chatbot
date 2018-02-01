@@ -274,7 +274,7 @@ app.post('/webhook/', function (req, res) {
 	//console.log(messaging_events)
     for (let i = 0; i < messaging_events.length; i++) {
 			let event = req.body.entry[0].messaging[i];
-			console.log("Main event" + event)
+			console.log("Main event" + JSON.stringify(event));
 			let sender = event.sender.id;
 			let textIn = event.message.text;
 			console.log("outside" + textIn)
