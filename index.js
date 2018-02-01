@@ -278,8 +278,11 @@ app.post('/webhook/', function (req, res) {
         if (event.postback) {
     	    let text = JSON.stringify(event.postback)
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-    	    sendTextMessage(sender, "Hello! I am Johan's personal chatbot 🤖, please ask me any questions related to Johan's personal experiences.")
-			setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started."); }, 100);
+    	    sendTextMessage(sender, "You can ask me..Something like")
+			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
+			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
+			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
+
     	    continue
         }
         if (event.referral) {
