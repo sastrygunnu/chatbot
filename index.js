@@ -49,13 +49,15 @@ function handleMessage(sender, question) {
 		sendGenericMessage(sender);
 		// sendTextMessage(sender, "I don't understand what you mean");
 		// setTimeout(function(){ sendGenericMessage(sender); }, 100);
-
 		return;	
 	}
 
+	else{
+		sendTextMessage(sender, intent.value);
+
+	}
 
 
-	sendTextMessage(sender, intent.value);
 	
 	console.log(kony)
 
@@ -300,7 +302,8 @@ app.post('/webhook/', function (req, res) {
             // Let's reply with an automatic message
             sendTextMessage(sender, 'Sorry I can only process text messages for now. 🙁')
             .catch(console.error);
-          } else if (text) {
+					} 
+					else if (text) {
 						
 						// We received a text message
 						console.log(" messags: " + event.message);
@@ -356,6 +359,8 @@ app.post('/webhook/', function (req, res) {
 				continue;
 
 			}
+
+			
           }
 		
 	  	}
