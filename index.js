@@ -276,7 +276,7 @@ app.post('/webhook/', function (req, res) {
 			let event = req.body.entry[0].messaging[i];
 			console.log(event)
 			let sender = event.sender.id;
-			
+			let textIn = event.message.text
         if (event.postback) {
     	    let text = JSON.stringify(event.postback)
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
@@ -285,8 +285,8 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
     	    continue
-        }
-        if (event.postback.payload == "talk_to_a_Human") {
+				}
+        if (event.message.attachment.payload == "talk_to_a_Human") {
 			// If a user has come back for a second time
     	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
