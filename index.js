@@ -282,15 +282,17 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
-			if(text == "talk_to_a_Human"){
-				sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
-		setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
-		setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
-		sendbotbutton(sender);
-			}
+
     	    continue
         }
-        
+        if (event.postback) {
+			// If a user has come back for a second time
+					let text = JSON.stringify(event.postback);
+					if(text == "talk_to_a_Human"){
+    	    
+		}
+			continue
+        }
       if (event.message && event.message.text) {
   	    let textIn = event.message.text
   		if (event.message.is_echo){
@@ -307,6 +309,18 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, 'Sorry I can only process text messages for now. 🙁')
             .catch(console.error);
           } else if (text) {
+						if(text === "Update my flight status?"){
+							sendTextMessage(sender, 'Sure can you please give me your flight no/ booking id')
+							continue;
+						}
+
+						if(text === "Talk to a human"){
+							sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
+							setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
+							setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by clicking the button below"); }, 100);
+							sendbotbutton(sender);
+							continue;
+						}
 						// We received a text message
 						console.log(" messags: " + event.message);
 			console.log("Handling message: " + text);
