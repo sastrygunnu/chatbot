@@ -283,10 +283,9 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Can you tell me my flight status?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Can you send me my boarding pass?"); }, 100);
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
-
     	    continue
         }
-        if (event.payload == "talk_to_a_Human") {
+        if (event.postback.payload == "talk_to_a_Human") {
 			// If a user has come back for a second time
     	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
