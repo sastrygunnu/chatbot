@@ -11,9 +11,10 @@ var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
 
 var client = new kony.sdk();
 client.init(appkey, appsecret, serviceURL, function(response) {
-	kony.print("Init success");
+	
+	console.log("Init success");
 }, function(error) {
-	kony.print("Init Failure");
+	console.log("Init Failure");
 });
 
 app.set('port', (process.env.PORT || 5000))
