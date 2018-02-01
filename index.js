@@ -365,7 +365,7 @@ function sendGenericMessage(sender) {
 					    "title": "❓ What to ask?"
 						},
 						{
-					    "type": "postback",
+					    "type": "referral",
 					    "payload": "talk to a Human",
 					    "title": "👩 Talk to a human"
 						},
