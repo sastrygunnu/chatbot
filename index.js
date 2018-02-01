@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-var kony = require('./kony-sdk');
+var basefile = require('./kony-sdk');
 
 
 app.set('port', (process.env.PORT || 5000))
@@ -372,7 +372,7 @@ app.post('/webhook/', function (req, res) {
 						console.log(" messags: " + event.message);
 			console.log("Handling message: " + text);
 			handleMessage(sender, text);
-			callkony();
+		
 			
           }
 		
@@ -384,7 +384,7 @@ app.post('/webhook/', function (req, res) {
 	//Send status saying we received okay.
     res.sendStatus(200)
   })
-  
+
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
 // Generic function to send a reply to the user in Facebook Messenger.
@@ -632,7 +632,6 @@ app.listen(app.get('port'), function() {
 	console.log('running on port', app.get('port'))
 })
 
-function callkony(){
 var appkey = "4dd7d8daf32a5ecd00871071e9e5b57e"
 var appsecret = "5641e81aec8223be3cf7563ca36a640c"
 var serviceURL = "https://100009629.auth.konycloud.com/appconfig"
@@ -645,4 +644,3 @@ client.init(appkey, appsecret, serviceURL, function(response) {
 	console.log("Init Failure");
 });
 
-}
