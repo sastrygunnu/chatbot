@@ -310,7 +310,6 @@ app.post('/webhook/', function (req, res) {
 							sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
 							setTimeout(function(){ sendTextMessage(sender, "I'm leaving now, it was nice talking to you 🙂"); }, 100);
 							setTimeout(function(){ sendTextMessage(sender, "You can call me back at any moment by Saying My Name - Jambo"); }, 100);
-							sendbotbutton(sender);
 							continue;
 						}
 
@@ -463,7 +462,7 @@ function sendbotbutton(sender) {
 
 function bordingpass(sender) {
 	let messageData = {
-		"message": {
+		
 			"attachment": {
 				"type": "template",
 				"payload": {
@@ -528,7 +527,7 @@ function bordingpass(sender) {
 					]
 				}
 			}
-		}
+		
 	}
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
