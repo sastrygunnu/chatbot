@@ -286,7 +286,7 @@ app.post('/webhook/', function (req, res) {
 			setTimeout(function(){ sendTextMessage(sender, "Update my flight status?"); }, 100);
     	    continue
 				}
-        if (event.messageobj.refmsgid=='talk') {
+        if (event.messageobj.msgid == '02') {
 			// If a user has come back for a second time
     	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Sure thing, soon my human colleagues will contact you ")
