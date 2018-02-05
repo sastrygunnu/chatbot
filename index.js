@@ -682,18 +682,7 @@ function loginToMF() {
   function invokeService(calimsToken) {
 	request({
 	  method: 'POST',
-	  uri: `https://saudiairlines-dev2.konycloud.com/services/FlightInfo/getFlightInfo`,
-	  headers: [
-		{
-		  name: 'token_auth',
-		  value: calimsToken
-		}
-	  ],
-	  body: {
-		storeFrontId: "JEDSV08AD",
-		dateOffSet: "0",
-		flightNumber: "SV123"
-	  },
+	  uri: `https://saudiairlines-dev2.konycloud.com/services/SaudiaCMS/GetAirplortList`,
 	  json: true
 	}, (error, response, body) => {
 	  console.log('error:', error); // Print the error if one occurred
