@@ -651,3 +651,55 @@ app.listen(app.get('port'), function() {
 // 	  console.log("Init Failure");
 //   });
 
+
+function loginToMF() {
+	request({
+	  method: 'POST',
+	  uri: `https://100009629.auth.konycloud.com/login`,
+	  headers: [
+		{
+		  name: 'X-Kony-App-Key',
+		  value: '4dd7d8daf32a5ecd00871071e9e5b57e'
+		},
+		{
+		  name: 'X-Kony-App-Secret',
+		  value: '5641e81aec8223be3cf7563ca36a640c'
+		}
+  
+	  ],
+	  body: {
+		password: "Kony@1234",
+		userid: "sajeesh.naniyil@kony.com"
+	  },
+	  json: true
+	}, (error, response, body) => {
+	  console.log('error:', error); // Print the error if one occurred
+	  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+	  console.log('body:', body); // Print the HTML for the Google homepage.
+	  invokeService(body.claims_token.value)
+	});
+  }
+  function invokeService(calimsToken) {
+	request({
+	  method: 'POST',
+	  uri: `https://saudiairlines-dev2.konycloud.com/services/FlightInfo/getFlightInfo`,
+	  headers: [
+		{
+		  name: 'token_auth',
+		  value: calimsToken
+		}
+	  ],
+	  body: {
+		storeFrontId: "JEDSV08AD",
+		dateOffSet: "0",
+		flightNumber: "SV123"
+	  },
+	  json: true
+	}, (error, response, body) => {
+	  console.log('error:', error); // Print the error if one occurred
+	  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+	  console.log('body:', body); // Print the HTML for the Google homepage.
+	});
+  }
+
+  loginToMF();
